@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!-- attribute xmlns:th harus ada jika ingin menggunakan
 template engine milik Thymeleaf -->
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="Is Palindrome"></title>
+    <title th:text=Is Palindrome></title>
     <style>
         .card {
             width: 30%;
@@ -30,24 +30,23 @@ template engine milik Thymeleaf -->
     </style>
 </head>
 <body>
-    <div class="content">
-        <div class="card">
-            <div class="header">
-                <p>Program Pengecek Palindrome</p>
+<div class="content">
+    <div class="card">
+        <div class="header">
+            <p>Program Pengecek Palindrome</p>
+        </div>
+        <div class="container">
+            <div th:if = "${palindrome != null}">
+                <p>Kata anda adalah: <span th:text="${palindrome.getKalimat()}"></span></p>
+                <p><b th:if="${palindrome.isPalindrome()}" th:text="'Kata anda merupakan Palindrome'"></b></p>
+                <p><b th:if="${palindrome.isPalindrome()} == false" th:text="'Kata anda bukanlah Palindrome'"></b></p>
             </div>
-            <div class="container">
-                <div th:if = "${palindrome != null}">
-                    <p>Kata anda adalah: <span th:text="${palindrome.getKalimat()}"></span></p>
-                    <p><b th:if="${palindrome.isPalindrome()}" th:text="Kata anda merupakan Palindrome"></b></p>
-                    <p><b th:if="${palindrome.isPalindrome()}" th:text="Kata anda merupakan Palindrome"></b></p>
-                    <p><b th:if="${palindrome.isPalindrome() == false}" th:text="Kata anda bukanlah Palindrome"></b></p>
-                </div>
 
-                <div th:unless="${palindrome != null}">
-                    <h3 th:text = "${msg}"></h3>
-                </div>
+            <div th:unless="${palindrome != null}">
+                <h3 th:text = "${msg}"></h3>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
