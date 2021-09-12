@@ -38,4 +38,3 @@ Karena dengan belajar APAP kita jadi bisa ngoding ^__________^ dan mengerti peng
 
 (Anda dapat membuat tampilan code dalam README.md menjadi lebih baik. Cari tahu
 lebih dalam tentang penulisan README.md di GitHub pada link
-[berikut](https://help.github.com/en/articles/basic-writing-and-formatting-syntax))
