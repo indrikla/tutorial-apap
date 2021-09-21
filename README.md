@@ -1,6 +1,33 @@
 # Tutorial APAP
 ## Authors
 * **Indri Klarissa Ramadhanti** - *1906302554* - *APAP C*
+---
+## Tutorial 2
+### Pertanyaan
+1. http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi 
+Akan tertampil whitelabel error page dikarenakan controller akan melakukan return view template "add-bioskop" tetapi template html add-bioskop belum dibuat sehingga program tidak akan menemukannya.
+
+2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat
+Spring Framework menyediakan fitur component-scan, yaitu dia akan melihat isi package yang kita sebutkan, yang kemudian akan mencari class-class yang diberi anotasi berikut: @Repository, @Service, @Controller, @Component.
+Setelah ditemukan, maka dia akan melakukan inisialisasi terhadap class tersebut, dan lalu meng-inject semua dependency. Untuk injection ini, kita juga tidak perlu lagi menyediakan setter method maupun menambahkan argumen di constructor. Kita dapat menggunakan anotasi @Autowired.
+
+3. Cobalah untuk menambahkan sebuah Bioskop dengan mengakses link berikut: http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20 APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
+Terjadi error karena parameter jumlah studio tidak ada padahal diset required = true.
+
+4. Jika Papa APAP ingin melihat Bioskop dengan nama Bioskop Maung, link apa yang harus diakses?
+Asumsi Bioskop Maung memiliki id = 1, maka Papa APAP dapat mengaksesnya lewat link /bioskop/view?idBioskop=1 atau /bioskop/view/id-bioskop/1
+
+5. Tambahkan 1 contoh Bioskop lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/bioskop/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu
+Halaman menampilkan detail semua bioskop yang telah ditambah lengkap besertaid, nama, alamat, nomor telepon, jumlah studionya. 
+![ss](https://i.ibb.co/h8N2mhD/Screenshot-1869.png)
+
+### Latihan
+1. Pada BioskopController tambahkan sebuah method view Bioskop dengan menggunakan Path Variable. Misalnya, kamu ingin memasukkan data sebuah Bioskop yang memiliki idBioskop 1, untuk melihat data yang baru dimasukkan tersebut, user dapat mengakses halaman http://localhost:8080/bioskop/view/id-bioskop/1. 
+![ss](https://i.ibb.co/3fNFVRr/Screenshot-1867.png)
+2. Tambahkan fitur untuk melakukan update jumlahStudio Bioskop berdasarkan idBioskop. Misalnya, setelah melakukan add Bioskop pada tahap 1 bab View Template, cobalah untuk mengubah jumlahStudio objek Bioskop tersebut menjadi 999 dengan mengakses halaman http://localhost:8080/bioskop/update/id-bioskop/1/jumlah-studio/999 Tampilkan juga sebuah halaman yang memberikan informasi bahwa data tersebut telah berhasil diubah. 
+![ss](https://i.ibb.co/C8s4sZq/Screenshot-1868.png) ![ss](https://i.ibb.co/h8N2mhD/Screenshot-1869.png)
+3. Tambahkan fitur untuk melakukan delete Bioskop berdasarkan idBioskop. Misalnya, setelah melakukan add Bioskop pada tahap 1 bab View Template dan melakukan update seperti pada latihan nomor 2, cobalah untuk melakukan delete data tersebut dengan mengakses halaman http://localhost:8080/bioskop/delete/id-bioskop/1. Tampilkan sebuah halaman yang memberikan informasi bahwa data tersebut telah berhasil dihapus.
+![ss](https://i.ibb.co/xSPVdHM/Screenshot-1870.png) ![ss](https://i.ibb.co/rcH0h31/Screenshot-1871.png)
 
 ---
 ## Tutorial 1
