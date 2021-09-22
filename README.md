@@ -2,6 +2,37 @@
 ## Authors
 * **Indri Klarissa Ramadhanti** - *1906302554* - *APAP C*
 ---
+## Tutorial 3
+### Pertanyaan
+1. Tolong jelaskan secara singkat apa kegunaan dari anotasi-anotasi yang ada pada model
+(@AllArgsConstructor, @NoArgsConstructor, @Setter, @Getter, @Entity, @Table)
+
+2. Pada class BioskopDB, terdapat method findByNoBioskop, apakah kegunaan dari method
+tersebut?
+
+3. Jelaskan perbedaan kegunaan dari anotasi @JoinTable dan @JoinColumn
+
+4. Pada class PenjagaModel, digunakan anotasi @JoinColumn pada atribut bioskop, apa
+kegunaan dari name, referencedColumnName, dan nullable dalam anotasi tersebut? dan apa
+perbedaan nullable dan penggunaan anotasi @NotNull
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER
+
+
+### Latihan1. 
+1. Ubah fitur View All Bioskop yang menampilkan seluruh bioskop, menjadi terurut
+berdasarkan nama bioskop. (Hint: Gunakan fitur yang dimiliki oleh JPA Repository!)
+a. Spesifikasi: Terdapat tombol View All pada Home.
+2. Tambahkan fitur Update Penjaga Bioskop. Fitur ini dapat mengubah seluruh informasi
+penjaga bioskop kecuali id penjaga bioskop. Spesifikasi dari fitur ini:
+a. Penjaga bioskop hanya dapat di-update ketika bioskop sedang tutup.
+b. Terdapat tombol Update Penjaga di setiap penjaga pada suatu halaman bioskop
+3. Tambahkan fitur delete penjaga bioskop yang dapat digunakan untuk menghapus seorang
+penjaga dari sebuah bioskop. Spesifikasi dari fitur ini:
+a. Penjaga bioskop hanya dapat di-delete ketika bioskop sedang tutup.
+b. Terdapat tombol Delete Penjaga di setiap penjaga pada suatu halaman bioskop
+
+---
 ## Tutorial 2
 ### Pertanyaan
 1. http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi 
