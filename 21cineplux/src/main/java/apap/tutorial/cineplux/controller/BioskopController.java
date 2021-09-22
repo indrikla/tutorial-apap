@@ -76,15 +76,17 @@ public class BioskopController {
     public String deleteBioskop(@PathVariable Long noBioskop, Model model) {
         BioskopModel bioskop = bioskopService.getBioskopByNoBioskop(noBioskop);
         List<PenjagaModel> listPenjaga = bioskop.getListPenjaga();
-        if (bioskop.getWaktuTutup().isBefore(LocalTime.now())) {
-            if (listPenjaga.size() == 0) {
-                bioskopService.getBioskopList().remove(bioskop);
-                bioskopService.deleteBioskop(bioskop);
-                model.addAttribute("noBioskop", bioskop.getNoBioskop());
-                return "delete-bioskop";
+        if (listPenjaga.size() == 0) {
+            if (bioskop.getWaktuTutup().isBefore(LocalTime.now())) {
+                if (bioskop.getWaktuBuka().isBefore(LocalTime.now())) {
+                    bioskopService.getBioskopList().remove(bioskop);
+                    bioskopService.deleteBioskop(bioskop);
+                    model.addAttribute("noBioskop", bioskop.getNoBioskop());
+                    return "delete-bioskop";
+                }
             }
         }
-        return "home";
+        return "ero";
     }
 
 }

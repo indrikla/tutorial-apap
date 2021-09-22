@@ -50,11 +50,9 @@ public class PenjagaController {
         List<PenjagaModel> penjagaList = bioskop.getListPenjaga();
         List<BioskopModel> listBioskop = bioskopService.findAllByOrderByNameBioskopAsc();
         model.addAttribute("listBioskop", listBioskop);
-        System.out.println(noBioskop);
-        System.out.println(noPenjaga);
         for (PenjagaModel penjaga : penjagaList) {
             if (penjaga.getNoPenjaga() == (noPenjaga)) {
-                if (bioskop.getWaktuTutup().isBefore(LocalTime.now())) {
+                if (bioskop.getWaktuTutup().isBefore(LocalTime.now()) && bioskop.getWaktuBuka().isBefore(LocalTime.now())) {
                     model.addAttribute("penjaga", penjaga);
                     model.addAttribute("noPenjaga", penjaga.getNoPenjaga());
                     model.addAttribute("namaPenjaga", penjaga.getNamaPenjaga());
@@ -82,7 +80,7 @@ public class PenjagaController {
 
         for (PenjagaModel p : penjagaList) {
             if (p.getNoPenjaga().equals(noPenjaga)) {
-                if (bioskop.getWaktuTutup().isBefore(LocalTime.now())) {
+                if (bioskop.getWaktuTutup().isBefore(LocalTime.now()) && bioskop.getWaktuBuka().isBefore(LocalTime.now())) {
                     bioskop.getListPenjaga().remove(p);
                     bioskopService.updateBioskop(bioskop);
                     penjagaService.deletePenjaga(p);
