@@ -2,6 +2,52 @@
 ## Authors
 * **Indri Klarissa Ramadhanti** - *1906302554* - *APAP C*
 ---
+## Tutorial 3
+### Pertanyaan
+1. Tolong jelaskan secara singkat apa kegunaan dari anotasi-anotasi yang ada pada model
+(@AllArgsConstructor, @NoArgsConstructor, @Setter, @Getter, @Entity, @Table)
+- @AllArgsConstructor menghasilkan constructor dengan 1 parameter untuk tiap field yang ada di suatu class
+- @NoArgsConstructor menghasilkan constructor tanpa parameter
+- @Setter menghasilkan method setter secara otomatis
+- @Getter menghasilkan method getter secara otomatis
+- @Entity mendefinisikan bahwa suatu class akan dipetakan ke tabel
+- @Table menentukan detail tabel yang akan digunakan dengan tujuan untuk mempertahankan entity dalam database
+
+2. Pada class BioskopDB, terdapat method findByNoBioskop, apakah kegunaan dari method
+tersebut?
+method findByNoBioskop berfungsi untuk mendapatkan objek bioskop dari nomor bioskop yang unik tiap bioskop
+
+3. Jelaskan perbedaan kegunaan dari anotasi @JoinTable dan @JoinColumn
+- @JoinTable: untuk pemetaan Many-To-Many dan asosiasi One-To-Many
+- @JoinColumn: untuk menentukan kolom untuk bergabung dengan entity association/element collection.
+
+4. Pada class PenjagaModel, digunakan anotasi @JoinColumn pada atribut bioskop, apa
+kegunaan dari name, referencedColumnName, dan nullable dalam anotasi tersebut? dan apa
+perbedaan nullable dan penggunaan anotasi @NotNull?
+- name: menunjukan nama dari kolom gabungan
+- referencedColumnName: properti yang berfungsi menunjukan nama kolom dalam suatu tabel yang direferensikan dengan tabel tujuan
+- nullable: anotasi yang digunakan untuk menyatakan suatu elemen beranotasi dapat menjadi null dalam beberapa kondisi/keadaan
+- @Not null: anotasi yang tidak akan memperbolehkan nilai null untuk field yang dibatasi (tetapi boleh empty)
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER
+- FetchType.LAZY: berfungsi memberi tahu Hibernate untuk mengambil entity yang berkaitan dengan  database saat menggunakan relasi. 
+- CascadeType.ALL: berfungsi menyebarkan (cascade) seluruh operasi EntityManager seperti MERGE, REFRESH, PERSIST, REMOVE, MERGE, dan atau DETACH ke entitas yang berkaitan. 
+- FetchType.EAGER: berfungsi memberi tahu Hibernate untuk mendapatkan seluruh elemen relasi saat dilakukannya pemilihan entitas root.
+
+### Latihan1. 
+1. Ubah fitur View All Bioskop yang menampilkan seluruh bioskop, menjadi terurut
+berdasarkan nama bioskop. (Hint: Gunakan fitur yang dimiliki oleh JPA Repository!)
+a. Spesifikasi: Terdapat tombol View All pada Home.
+2. Tambahkan fitur Update Penjaga Bioskop. Fitur ini dapat mengubah seluruh informasi
+penjaga bioskop kecuali id penjaga bioskop. Spesifikasi dari fitur ini:
+a. Penjaga bioskop hanya dapat di-update ketika bioskop sedang tutup.
+b. Terdapat tombol Update Penjaga di setiap penjaga pada suatu halaman bioskop
+3. Tambahkan fitur delete penjaga bioskop yang dapat digunakan untuk menghapus seorang
+penjaga dari sebuah bioskop. Spesifikasi dari fitur ini:
+a. Penjaga bioskop hanya dapat di-delete ketika bioskop sedang tutup.
+b. Terdapat tombol Delete Penjaga di setiap penjaga pada suatu halaman bioskop
+
+---
 ## Tutorial 2
 ### Pertanyaan
 1. http://localhost:8080/bioskop/add?idBioskop=1&namaBioskop=Bioskop%20PAPA%20APAP&alamat=Maung%20Fasilkom&noTelepon=081xxx&jumlahStudio=10 Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi 
