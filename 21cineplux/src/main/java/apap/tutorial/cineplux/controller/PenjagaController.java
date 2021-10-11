@@ -8,14 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 @Controller
 public class PenjagaController {
+
     @Qualifier("penjagaServiceImpl")
     @Autowired
     PenjagaService penjagaService;
@@ -25,7 +27,7 @@ public class PenjagaController {
     BioskopService bioskopService;
 
     @GetMapping("/penjaga/add/{noBioskop}")
-    public String addPenjagaForm(@PathVariable Long noBioskop, Model model) {
+    public String addPenjagaForm(@PathVariable Long noBioskop, Model model){
         PenjagaModel penjaga = new PenjagaModel();
         BioskopModel bioskop = bioskopService.getBioskopByNoBioskop(noBioskop);
         penjaga.setBioskop(bioskop);
@@ -37,58 +39,55 @@ public class PenjagaController {
     public String addPenjagaSubmit(
             @ModelAttribute PenjagaModel penjaga,
             Model model
-    ) {
+    ){
         penjagaService.addPenjaga(penjaga);
         model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
         model.addAttribute("namaPenjaga", penjaga.getNamaPenjaga());
         return "add-penjaga";
     }
 
-    @GetMapping(value = "/penjaga/update/{noBioskop}/{noPenjaga}")
-    public String updatePenjagaForm(@PathVariable Long noBioskop, @PathVariable Long noPenjaga, Model model) {
-        BioskopModel bioskop = bioskopService.getBioskopByNoBioskop(noBioskop);
-        List<PenjagaModel> penjagaList = bioskop.getListPenjaga();
-        List<BioskopModel> listBioskop = bioskopService.findAllByOrderByNameBioskopAsc();
-        model.addAttribute("listBioskop", listBioskop);
-        for (PenjagaModel penjaga : penjagaList) {
-            if (penjaga.getNoPenjaga() == (noPenjaga)) {
-                if (bioskop.getWaktuTutup().isBefore(LocalTime.now()) && bioskop.getWaktuBuka().isBefore(LocalTime.now())) {
-                    model.addAttribute("penjaga", penjaga);
-                    model.addAttribute("noPenjaga", penjaga.getNoPenjaga());
-                    model.addAttribute("namaPenjaga", penjaga.getNamaPenjaga());
-                    model.addAttribute("bioskop", bioskop);
-                    return "form-update-penjaga";
-                }
-            }
+    @GetMapping("/penjaga/update/{noPenjaga}")
+    public String updatePenjagaForm(@PathVariable Long noPenjaga, Model model){
+        PenjagaModel penjaga = penjagaService.getPenjagaByNoPenjaga(noPenjaga);
+        if (penjaga == null){
+            return "error-notfound";
         }
-        return "ero";
+        model.addAttribute("penjaga", penjaga);
+        return "form-update-penjaga";
     }
 
-    @PostMapping(value = "/penjaga/update")
-    public String updatePenjagaSubmit(@ModelAttribute PenjagaModel penjaga, Model model) {
-        penjagaService.updatePenjaga(penjaga);
-        model.addAttribute("noPenjaga", penjaga.getNoPenjaga());
-        return "update-penjaga";
+//    TODO: kasih handler yang cuman bisa kalo tutup
+    @PostMapping("/penjaga/update")
+    public String updatePenjagaSubmit(
+            @ModelAttribute PenjagaModel penjaga,
+            Model model
+    ){
+        LocalTime now = LocalTime.now();
+        BioskopModel bioskop = penjaga.getBioskop();
+        if (now.isBefore(bioskop.getWaktuBuka()) || now.isAfter(bioskop.getWaktuTutup())){
+            penjagaService.updatePenjaga(penjaga);
+            model.addAttribute("namaPenjaga", penjaga.getNamaPenjaga());
+            model.addAttribute("noBioskop", penjaga.getBioskop().getNoBioskop());
+            return "update-penjaga";
+        }
+        return "error-notfound";
     }
 
-    @GetMapping(value = "/penjaga/delete/{noBioskop}/{noPenjaga}")
-    public String deletePenjagaForm(@PathVariable Long noBioskop, @PathVariable Long noPenjaga, Model model) {
-        BioskopModel bioskop = bioskopService.getBioskopByNoBioskop(noBioskop);
-        List<PenjagaModel> penjagaList = bioskop.getListPenjaga();
-        model.addAttribute("bioskop", bioskop);
-        model.addAttribute("listPenjaga", penjagaList);
 
-        for (PenjagaModel p : penjagaList) {
-            if (p.getNoPenjaga().equals(noPenjaga)) {
-                if (bioskop.getWaktuTutup().isBefore(LocalTime.now()) && bioskop.getWaktuBuka().isBefore(LocalTime.now())) {
-                    bioskop.getListPenjaga().remove(p);
-                    bioskopService.updateBioskop(bioskop);
-                    penjagaService.deletePenjaga(p);
-                    model.addAttribute("noPenjaga", p.getNoPenjaga());
-                    return "delete-penjaga";
-                }
-            }
+    @PostMapping("/penjaga/delete")
+    public String deletePenjagaSubmit(
+        @ModelAttribute BioskopModel bioskop,
+        Model model
+    ){
+        model.addAttribute("noBioskop", bioskop.getNoBioskop());
+        int res = 1;
+        for (PenjagaModel penjaga:
+             bioskop.getListPenjaga()) {
+            res = penjagaService.deletePenjaga(penjaga);
         }
-        return "ero";
+        if (res == 1){
+            return "delete-penjaga";
+        }
+        return "error-notfound";
     }
 }
