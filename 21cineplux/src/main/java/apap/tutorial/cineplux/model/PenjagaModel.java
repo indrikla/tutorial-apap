@@ -1,6 +1,9 @@
 package apap.tutorial.cineplux.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -30,40 +33,10 @@ public class PenjagaModel implements Serializable {
     @Column(nullable = false)
     private Integer jenisKelamin;
 
+    //Relasi dengan BioskopModel
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "no_bioskop", referencedColumnName = "noBioskop", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private BioskopModel bioskop;
 
-    public Long getNoPenjaga() {
-        return noPenjaga;
-    }
-
-    public void setNoPenjaga(Long noPenjaga) {
-        this.noPenjaga = noPenjaga;
-    }
-
-    public String getNamaPenjaga() {
-        return namaPenjaga;
-    }
-
-    public void setNamaPenjaga(String namaPenjaga) {
-        this.namaPenjaga = namaPenjaga;
-    }
-
-    public Integer getJenisKelamin() {
-        return jenisKelamin;
-    }
-
-    public void setJenisKelamin(Integer jenisKelamin) {
-        this.jenisKelamin = jenisKelamin;
-    }
-
-    public BioskopModel getBioskop() {
-        return bioskop;
-    }
-
-    public void setBioskop(BioskopModel bioskop) {
-        this.bioskop = bioskop;
-    }
 }
