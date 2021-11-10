@@ -1,6 +1,10 @@
 package apap.tutorial.cineplux.model;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,6 +19,7 @@ import java.io.Serializable;
 @Getter
 @Entity
 @Table(name = "penjaga")
+@JsonIgnoreProperties(value={"bioskop"},allowSetters = true)
 public class PenjagaModel implements Serializable {
 
     @Id
@@ -30,6 +35,7 @@ public class PenjagaModel implements Serializable {
     @Column(nullable = false)
     private Integer jenisKelamin;
 
+    //Relasi dengan BioskopModel
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "no_bioskop", referencedColumnName = "noBioskop", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

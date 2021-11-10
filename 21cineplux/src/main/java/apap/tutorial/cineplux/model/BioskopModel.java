@@ -1,6 +1,9 @@
 package apap.tutorial.cineplux.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,105 +19,108 @@ import java.util.List;
 @Entity
 @Table(name = "bioskop")
 public class BioskopModel implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long noBioskop;
 
-    @NotNull
-    @Size(max = 30)
-    @Column(nullable = false)
-    private String namaBioskop;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long noBioskop;
 
-    @NotNull
-    @Size(max = 50)
-    @Column(nullable = false)
-    private String alamatBioskop;
+  @NotNull
+  @Size(max=30)
+  @Column(nullable = false)
+  private String namaBioskop;
 
-    @NotNull
-    @Column(nullable = false)
-    private Integer jumlahStudio;
+  @NotNull
+  @Size(max=50)
+  @Column(nullable = false)
+  private String alamatBioskop;
 
-    @NotNull
-    @Column(nullable = false)
-    @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime waktuBuka;
+  @NotNull
+  @Column(nullable = false)
+  private Integer jumlahStudio;
 
-    @NotNull
-    @Column(nullable = false)
-    @DateTimeFormat(pattern = "HH:mm")
-    private LocalTime waktuTutup;
+  @NotNull
+  @Column(nullable = false)
+  @DateTimeFormat(pattern = "HH:mm")
+  private LocalTime waktuBuka;
 
-    @OneToMany(mappedBy = "bioskop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<PenjagaModel> listPenjaga;
+  @NotNull
+  @Column(nullable = false)
+  @DateTimeFormat(pattern = "HH:mm")
+  private LocalTime waktuTutup;
 
-    @ManyToMany
-    @JoinTable(
-            name = "film_bioskop",
-            joinColumns = @JoinColumn(name = "no_bioskop"),
-            inverseJoinColumns = @JoinColumn(name = "no_film"))
-    List<FilmModel> listFilm;
+  //Relasi dengan PenjagaModel
+  @OneToMany(mappedBy = "bioskop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  private List<PenjagaModel> listPenjaga;
 
-    public void setNoBioskop(Long noBioskop) {
-        this.noBioskop = noBioskop;
-    }
+  //Relasi dengan FilmModel
+  @ManyToMany
+  @JoinTable(
+          name = "film_bioskop",
+          joinColumns = @JoinColumn(name = "no_bioskop"),
+          inverseJoinColumns = @JoinColumn(name = "no_film"))
+  List<FilmModel> listFilm;
 
-    public Long getNoBioskop() {
-        return noBioskop;
-    }
+  public Long getNoBioskop() {
+    return noBioskop;
+  }
 
-    public String getNamaBioskop() {
-        return namaBioskop;
-    }
+  public void setNoBioskop(Long noBioskop) {
+    this.noBioskop = noBioskop;
+  }
 
-    public void setNamaBioskop(String namaBioskop) {
-        this.namaBioskop = namaBioskop;
-    }
+  public String getNamaBioskop() {
+    return namaBioskop;
+  }
 
-    public String getAlamatBioskop() {
-        return alamatBioskop;
-    }
+  public void setNamaBioskop(String namaBioskop) {
+    this.namaBioskop = namaBioskop;
+  }
 
-    public void setAlamatBioskop(String alamatBioskop) {
-        this.alamatBioskop = alamatBioskop;
-    }
+  public String getAlamatBioskop() {
+    return alamatBioskop;
+  }
 
-    public Integer getJumlahStudio() {
-        return jumlahStudio;
-    }
+  public void setAlamatBioskop(String alamatBioskop) {
+    this.alamatBioskop = alamatBioskop;
+  }
 
-    public void setJumlahStudio(Integer jumlahStudio) {
-        this.jumlahStudio = jumlahStudio;
-    }
+  public Integer getJumlahStudio() {
+    return jumlahStudio;
+  }
 
-    public LocalTime getWaktuBuka() {
-        return waktuBuka;
-    }
+  public void setJumlahStudio(Integer jumlahStudio) {
+    this.jumlahStudio = jumlahStudio;
+  }
 
-    public void setWaktuBuka(LocalTime waktuBuka) {
-        this.waktuBuka = waktuBuka;
-    }
+  public LocalTime getWaktuBuka() {
+    return waktuBuka;
+  }
 
-    public LocalTime getWaktuTutup() {
-        return waktuTutup;
-    }
+  public void setWaktuBuka(LocalTime waktuBuka) {
+    this.waktuBuka = waktuBuka;
+  }
 
-    public void setWaktuTutup(LocalTime waktuTutup) {
-        this.waktuTutup = waktuTutup;
-    }
+  public LocalTime getWaktuTutup() {
+    return waktuTutup;
+  }
 
-    public List<PenjagaModel> getListPenjaga() {
-        return listPenjaga;
-    }
+  public void setWaktuTutup(LocalTime waktuTutup) {
+    this.waktuTutup = waktuTutup;
+  }
 
-    public void setListPenjaga(List<PenjagaModel> listPenjaga) {
-        this.listPenjaga = listPenjaga;
-    }
+  public List<PenjagaModel> getListPenjaga() {
+    return listPenjaga;
+  }
 
-    public List<FilmModel> getListFilm() {
-        return listFilm;
-    }
+  public void setListPenjaga(List<PenjagaModel> listPenjaga) {
+    this.listPenjaga = listPenjaga;
+  }
 
-    public void setListFilm(List<FilmModel> listFilm) {
-        this.listFilm = listFilm;
-    }
+  public List<FilmModel> getListFilm() {
+    return listFilm;
+  }
+
+  public void setListFilm(List<FilmModel> listFilm) {
+    this.listFilm = listFilm;
+  }
 }

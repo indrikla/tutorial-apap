@@ -1,6 +1,9 @@
 package apap.tutorial.cineplux.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,6 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "film")
 public class FilmModel implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long noFilm;
@@ -25,9 +29,15 @@ public class FilmModel implements Serializable {
     private String namaFilm;
 
     @NotNull
+    @Size(max = 50)
     @Column(nullable = false)
-    private Boolean isDisplaying;
+    private String deskripsiFilm;
 
+    @NotNull
+    @Column(nullable = false)
+    private Integer isDisplaying;
+
+    //Relasi dengan BioskopModel
     @ManyToMany(mappedBy = "listFilm")
     List<BioskopModel> listBioskop;
 
@@ -47,12 +57,20 @@ public class FilmModel implements Serializable {
         this.namaFilm = namaFilm;
     }
 
-    public Boolean getDisplaying() {
+    public String getDeskripsiFilm() {
+        return deskripsiFilm;
+    }
+
+    public void setDeskripsiFilm(String deskripsiFilm) {
+        this.deskripsiFilm = deskripsiFilm;
+    }
+
+    public Integer getIsDisplaying() {
         return isDisplaying;
     }
 
-    public void setDisplaying(Boolean displaying) {
-        isDisplaying = displaying;
+    public void setIsDisplaying(Integer isDisplaying) {
+        this.isDisplaying = isDisplaying;
     }
 
     public List<BioskopModel> getListBioskop() {
