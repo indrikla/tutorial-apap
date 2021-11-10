@@ -20,7 +20,6 @@ public class BioskopInMemoryService implements BioskopService{
     }
 
     @Override
-<<<<<<< HEAD
     public void updateBioskop(BioskopModel bioskop) {
 
     }
@@ -31,13 +30,10 @@ public class BioskopInMemoryService implements BioskopService{
     }
 
     @Override
-=======
->>>>>>> 70ba2b3560fd1fa23c150b1677f8b51cd7afd606
     public List<BioskopModel> getBioskopList() {
         return listBioskop;
     }
 
-<<<<<<< HEAD
 
     @Override
     public BioskopModel getBioskopByNoBioskop(Long noBioskop) {
@@ -49,15 +45,4 @@ public class BioskopInMemoryService implements BioskopService{
         return null;
     }
 
-=======
-    @Override
-    public BioskopModel getBioskopByIdBioskop(String idBioskop) {
-        for (BioskopModel bioskopModel : listBioskop) {
-            if (bioskopModel.getIdBioskop().equals(idBioskop)) {
-                return bioskopModel;
-            }
-        }
-        return null;
-    }
->>>>>>> 70ba2b3560fd1fa23c150b1677f8b51cd7afd606
 }
