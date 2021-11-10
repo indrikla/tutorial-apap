@@ -1,6 +1,8 @@
 package apap.tutorial.cineplux.restcontroller;
 
 import apap.tutorial.cineplux.model.PenjagaModel;
+import apap.tutorial.cineplux.repository.BioskopDB;
+import apap.tutorial.cineplux.repository.PenjagaDB;
 import apap.tutorial.cineplux.service.PenjagaRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +14,7 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 //import apap.tutorial.cineplux.rest.BioskopDetail;
@@ -21,10 +24,13 @@ import java.util.NoSuchElementException;
 public class PenjagaRestController {
 
     @Autowired
+    PenjagaDB penjagaDB;
+
+    @Autowired
     private PenjagaRestService penjagaRestService;
 
     @PostMapping(value = "/penjaga")
-    private PenjagaModel createPenjaga(
+    private ResponseEntity createPenjaga(
             @Valid @RequestBody PenjagaModel penjaga,
             BindingResult bindingResult
     ) {
@@ -33,12 +39,13 @@ public class PenjagaRestController {
                     HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field."
             );
         } else {
-            return penjagaRestService.createPenjaga(penjaga);
+            penjagaRestService.createPenjaga(penjaga);
+            return ResponseEntity.ok("Create penjaga success!");
         }
     }
 
     @GetMapping(value = "/penjaga/{noPenjaga}")
-    private PenjagaModel retrieveBioskop(@PathVariable("noPenjaga") Long noPenjaga) {
+    private PenjagaModel retrievePenjaga(@PathVariable("noPenjaga") Long noPenjaga) {
         try {
             return penjagaRestService.getPenjagaByNoPenjaga(noPenjaga);
         } catch (NoSuchElementException e) {
@@ -65,9 +72,10 @@ public class PenjagaRestController {
     }
 
     @PutMapping(value = "/penjaga/{noPenjaga}")
-    private PenjagaModel updatePenjaga(@PathVariable("noPenjaga") Long noPenjaga, @RequestBody PenjagaModel penjaga) {
+    private ResponseEntity updatePenjaga(@PathVariable("noPenjaga") Long noPenjaga, @RequestBody PenjagaModel penjaga) {
         try {
-            return penjagaRestService.updatePenjaga(noPenjaga, penjaga);
+            penjagaRestService.updatePenjaga(noPenjaga, penjaga);
+            return ResponseEntity.ok("Update penjaga success!");
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Penjaga with No Penjaga " + String.valueOf(noPenjaga) + " Not Found."
@@ -76,12 +84,15 @@ public class PenjagaRestController {
     }
 
     @GetMapping(value = "/list-penjaga")
-    private List<PenjagaModel> retrieveListBioskop(){
+    private List<PenjagaModel> retrieveListPenjaga(){
         return penjagaRestService.retrieveListPenjaga();
     }
 
     @GetMapping(value = "/penjaga/umur/{noPenjaga}")
-    private Mono<String> getUmur(@PathVariable("noPenjaga") Long noPenjaga) {
-        return penjagaRestService.getUmur(noPenjaga);
+    private PenjagaModel getUmur(@PathVariable("noPenjaga") Long noPenjaga) {
+        PenjagaModel penjaga = penjagaRestService.getPenjagaByNoPenjaga(noPenjaga);
+        penjaga.setUmur(penjagaRestService.getUmur(noPenjaga).getAge());
+        penjagaDB.save(penjaga);
+        return penjaga;
     }
 }

@@ -4,14 +4,11 @@ import apap.tutorial.cineplux.model.BioskopModel;
 import apap.tutorial.cineplux.model.PenjagaModel;
 import apap.tutorial.cineplux.repository.BioskopDB;
 import apap.tutorial.cineplux.repository.PenjagaDB;
-import apap.tutorial.cineplux.rest.BioskopDetail;
+import apap.tutorial.cineplux.rest.AgifyModel;
 import apap.tutorial.cineplux.rest.Setting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import javax.transaction.Transactional;
 import java.time.LocalTime;
@@ -78,11 +75,18 @@ public class PenjagaRestServiceImpl implements PenjagaRestService {
     }
 
     @Override
-    public Mono<String> getUmur(Long noPenjaga) {
-        String namaPenjaga = getPenjagaByNoPenjaga(noPenjaga).getNamaPenjaga();
-        return this.webClient.get().uri("/?name=" + namaPenjaga)
-                .retrieve()
-                .bodyToMono(String.class);
-    }
+    public AgifyModel getUmur(Long noPenjaga) {
+        LocalTime now = LocalTime.now();
+        PenjagaModel penjaga = getPenjagaByNoPenjaga(noPenjaga);
+        BioskopModel bioskop = penjaga.getBioskop();
 
+        if((now.isBefore(bioskop.getWaktuBuka()) || now.isAfter(bioskop.getWaktuTutup()))) {
+            String namaPenjaga = penjaga.getNamaPenjaga().split(" ")[0];
+            return this.webClient.get().uri("/?name=" + namaPenjaga)
+                    .retrieve()
+                    .bodyToMono(AgifyModel.class).block();
+        } else {
+            throw new UnsupportedOperationException("Bioskop where penjaga is working on is still open!");
+        }
+    }
 }

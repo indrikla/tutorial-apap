@@ -1,8 +1,7 @@
 package apap.tutorial.cineplux.service;
 
 import apap.tutorial.cineplux.model.PenjagaModel;
-import apap.tutorial.cineplux.rest.BioskopDetail;
-import reactor.core.publisher.Mono;
+import apap.tutorial.cineplux.rest.AgifyModel;
 
 import java.util.List;
 
@@ -12,5 +11,5 @@ public interface PenjagaRestService {
     PenjagaModel getPenjagaByNoPenjaga(Long noPenjaga);
     PenjagaModel updatePenjaga(Long noPenjaga, PenjagaModel penjagaUpdate);
     void deletePenjaga(Long noPenjaga);
-    Mono<String> getUmur(Long noPenjaga);
+    AgifyModel getUmur(Long noPenjaga);
 }
