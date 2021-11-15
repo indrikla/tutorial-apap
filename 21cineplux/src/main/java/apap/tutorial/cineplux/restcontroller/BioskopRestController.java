@@ -90,4 +90,8 @@ public class BioskopRestController {
         return bioskopRestService.postStatus();
     }
 
+    @GetMapping(value = "/list-bioskop/{jumlahStudio}")
+    private List<BioskopModel> retrieveListBioskopByJumlahStudio(@PathVariable("jumlahStudio") Integer jumlahStudio){
+        return bioskopRestService.retrieveListBioskopByJumlahStudio(jumlahStudio);
+    }
 }
