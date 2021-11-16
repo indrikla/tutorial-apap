@@ -41,4 +41,43 @@ public class FilmModel implements Serializable {
     @ManyToMany(mappedBy = "listFilm")
     List<BioskopModel> listBioskop;
 
+    public Long getNoFilm() {
+        return noFilm;
+    }
+
+    public void setNoFilm(Long noFilm) {
+        this.noFilm = noFilm;
+    }
+
+    public String getNamaFilm() {
+        return namaFilm;
+    }
+
+    public void setNamaFilm(String namaFilm) {
+        this.namaFilm = namaFilm;
+    }
+
+    public String getDeskripsiFilm() {
+        return deskripsiFilm;
+    }
+
+    public void setDeskripsiFilm(String deskripsiFilm) {
+        this.deskripsiFilm = deskripsiFilm;
+    }
+
+    public Integer getIsDisplaying() {
+        return isDisplaying;
+    }
+
+    public void setIsDisplaying(Integer isDisplaying) {
+        this.isDisplaying = isDisplaying;
+    }
+
+    public List<BioskopModel> getListBioskop() {
+        return listBioskop;
+    }
+
+    public void setListBioskop(List<BioskopModel> listBioskop) {
+        this.listBioskop = listBioskop;
+    }
 }

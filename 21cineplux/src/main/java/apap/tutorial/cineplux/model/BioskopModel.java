@@ -59,4 +59,68 @@ public class BioskopModel implements Serializable {
           joinColumns = @JoinColumn(name = "no_bioskop"),
           inverseJoinColumns = @JoinColumn(name = "no_film"))
   List<FilmModel> listFilm;
+
+  public Long getNoBioskop() {
+    return noBioskop;
+  }
+
+  public void setNoBioskop(Long noBioskop) {
+    this.noBioskop = noBioskop;
+  }
+
+  public String getNamaBioskop() {
+    return namaBioskop;
+  }
+
+  public void setNamaBioskop(String namaBioskop) {
+    this.namaBioskop = namaBioskop;
+  }
+
+  public String getAlamatBioskop() {
+    return alamatBioskop;
+  }
+
+  public void setAlamatBioskop(String alamatBioskop) {
+    this.alamatBioskop = alamatBioskop;
+  }
+
+  public Integer getJumlahStudio() {
+    return jumlahStudio;
+  }
+
+  public void setJumlahStudio(Integer jumlahStudio) {
+    this.jumlahStudio = jumlahStudio;
+  }
+
+  public LocalTime getWaktuBuka() {
+    return waktuBuka;
+  }
+
+  public void setWaktuBuka(LocalTime waktuBuka) {
+    this.waktuBuka = waktuBuka;
+  }
+
+  public LocalTime getWaktuTutup() {
+    return waktuTutup;
+  }
+
+  public void setWaktuTutup(LocalTime waktuTutup) {
+    this.waktuTutup = waktuTutup;
+  }
+
+  public List<PenjagaModel> getListPenjaga() {
+    return listPenjaga;
+  }
+
+  public void setListPenjaga(List<PenjagaModel> listPenjaga) {
+    this.listPenjaga = listPenjaga;
+  }
+
+  public List<FilmModel> getListFilm() {
+    return listFilm;
+  }
+
+  public void setListFilm(List<FilmModel> listFilm) {
+    this.listFilm = listFilm;
+  }
 }

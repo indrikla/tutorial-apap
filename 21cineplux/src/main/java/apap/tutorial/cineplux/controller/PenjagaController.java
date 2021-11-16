@@ -56,7 +56,6 @@ public class PenjagaController {
         return "form-update-penjaga";
     }
 
-//    TODO: kasih handler yang cuman bisa kalo tutup
     @PostMapping("/penjaga/update")
     public String updatePenjagaSubmit(
             @ModelAttribute PenjagaModel penjaga,
@@ -72,7 +71,6 @@ public class PenjagaController {
         }
         return "error-notfound";
     }
-
 
     @PostMapping("/penjaga/delete")
     public String deletePenjagaSubmit(
