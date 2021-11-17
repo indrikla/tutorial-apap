@@ -23,6 +23,9 @@
             <a th:href="@{/film/viewall}" class="mx-2 btn btn-warning">Lihat semua film</a>
             <a th:href="@{/film/add}" class="mx-2 btn btn-outline-warning">Tambah film</a>
         </div>
+        <div class="my-3 d-flex justify-content-center">
+            <a th:href="@{/user/update/password}" class="mx-2 btn btn-outline-warning">Ubah Password</a>
+        </div>
         <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" class="my-3 d-flex justify-content-center">
             <a th:href="@{/user/add}" class="mx-2 btn btn-outline-warning">Tambah User Baru</a>
         </div>

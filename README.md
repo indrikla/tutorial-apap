@@ -1,6 +1,38 @@
 # Tutorial APAP
 ## Authors
 * **Indri Klarissa Ramadhanti** - *1906302554* - *APAP C*
+
+---
+## Tutorial 6
+### Pertanyaan
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+
+- Otentikasi (key): Proses memverifikasi siapa seseorang saat ingin memasuki sebuah aplikasi/website; apakah ia sudah pernah terdaftar maupun belum. Contoh implementasinya adalah login pada 21cineplux.
+- Otorisasi (permissions): Proses memverifikasi aplikasi, file, dan data spesifik apa yang dapat diakses oleh pengguna berdasarkan role yang ia miliki. Contoh implementasinya adalah hanya admin yang bisa melihat list user yang ada pada 21cineplux.
+
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerja dan tujuannya.
+
+merupakan implementasi PasswordEncoder yang menggunakan fungsi hashing BCrypt.
+BCrypt adalah salted hash function satu arah berdasarkan cipher Blowfish. 
+Dengan ini, pengguna dapat secara opsional menyediakan "kekuatan" (alias putaran log di BCrypt) dan instance SecureRandom. 
+Semakin besar parameter kekuatan, secara eksponensial akan semakin banyak pula "pekerjaan" yang harus dilakukan untuk meng-hash kata sandi.
+BCryptPasswordEncoder bertujuan untuk memberikan peningkatan pada kata sandi teks biasa dan algoritma hashing tradisional (md5). 
+
+
+3. Apakah penyimpanan password sebaiknya menggunakan encryption atau hashing? Mengapa demikian?
+Hashing lebih aman digunakan untuk penyimpanan data yang butuh keamanan lebih seperti password karena ia merupakan fungsi satu arah yang tidak mungkin untuk "mendekripsi" hash dan mendapatkan nilai plaintext aslinya.
+Sedangkan Encryption adalah fungsi dua arah, artinya plaintext asli dapat dengan mudah diambil kembali. 
+Encryption lebih baik digunakan untuk menyimpan data yang membutuhkan keamanan yang lebih rendah seperti alamat pengguna.
+
+
+4. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+UUID (Universally Unique Identifier) merepresentasikan nilai sepanjang 128 bit yang unik. 
+UUID berfungsi untuk membuat nama file acak, session id, id transaksi, id suatu akun, dan lain-lain.
+
+5. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut?
+UserDetailsServicelmpl.java berguna dalam proses otentikasi karena ia berfungsi untuk memvalidasi apakah username dan password yang diinput user (client side) ada dan sesuai dengan yang ada di database.
+
 ---
 ## Tutorial 5
 ### Pertanyaan
