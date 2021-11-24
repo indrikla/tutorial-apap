@@ -58,6 +58,7 @@ public class UserController {
             return "redirect:/user/add";
         }
     }
+
     @PostMapping(value= "/delete")
     private String deleteUserSubmit(@ModelAttribute UserModel user, Model model) {
         userService.deleteUser(user);
