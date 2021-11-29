@@ -6,7 +6,9 @@ import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Fab } from "@material-ui/core";
 import ViewStreamIcon from '@mui/icons-material/ViewStream';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { IconButton } from '@material-ui/core';
 /**
 * Building React component using functional programming paradigm
 */
@@ -65,6 +67,22 @@ function App() {
         }
         setCartItems(newItems);
         setBalance(newBalance);
+    }
+    function CustomIconButton({ isShopList, inCart, handleChange }) {
+        if (isShopList) {
+            if (inCart) {
+                return null;
+            }
+            return (
+                <IconButton onClick={handleChange}>
+                    <AddShoppingCartIcon />
+                </IconButton>);
+        } else {
+            return (
+                <IconButton onClick={handleChange}>
+                    {inCart ? <DeleteIcon /> : <AddShoppingCartIcon />}
+                </IconButton>);
+        }
     }
     
     return (

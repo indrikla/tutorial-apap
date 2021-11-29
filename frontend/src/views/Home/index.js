@@ -45,7 +45,11 @@ export default class Home extends React.Component {
                                     items={this.state.cartItems}
                                     onItemClick={this.handleRemoveItemFromCart}
                                     isShopList={false}
+            
                                 ></List>
+                                            <IconButton onClick={handleChange}>
+                {inCart ? <DeleteIcon /> : <AddShoppingCartIcon />}
+            </IconButton>);
                             </div>
                         ) : <div className="col-sm">
                             <List
@@ -94,6 +98,21 @@ export default class Home extends React.Component {
         this.setState({ balance : newBalance })
     };
 
+    handleDeleteAllItem = (item) => {
+        const newItems = [...this.state.cartItems];
+        const newItem = { ...item };
+        const newBalance = this.state.balance + newItem.price;
+        const targetInd = newItems.findIndex((it) => it.id === newItem.id);
+        
+        // if (targetInd > 0 || targetInd === 0) {
+        //     newItem.inCart = false;
+        //     newItems.splice(targetInd,1);
+        //     this.updateShopItem(newItem, false)
+        // }
+        this.setState({ cartItems: newItems })
+        this.setState({ balance : newBalance })
+    };
+
     updateShopItem = (item, inCart) => {
         const tempShopItems = this.state.shopItems;
         const targetInd = tempShopItems.findIndex((it) => it.id === item.id);
@@ -105,5 +124,6 @@ export default class Home extends React.Component {
         const cartHidden = this.state.cartHidden;
         this.setState({ cartHidden: !cartHidden });
     };
+    
 
 }
