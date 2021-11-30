@@ -3,6 +3,32 @@
 * **Indri Klarissa Ramadhanti** - *1906302554* - *APAP C*
 
 ---
+## Tutorial 7
+### Pertanyaan
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot
+sebagai ilustrasi dari apa yang Anda jelaskan.
+-> 1. Saya menambahkan method handleRemoveItemFromCart dimana ketika tergetInd lebih besar sama dengan 0, code untuk me-remove item seperti yang terlampir
+di screenshoot berikut ![ss](https://i.ibb.co/1zFvNMq/no1.jpg)![ss](https://i.ibb.co/5BJt5DQ/no1-2.jpg)
+-> 2. Saya menambahkan const newBalance = this.state.balance + newItem.price yang akan mengkalkulasi balance terbaru dan nantinya akan di set state 
+pada state balance ![ss](https://i.ibb.co/RSPhkQv/no2.jpg)![ss](https://i.ibb.co/1zFvNMq/no1.jpg)
+-> 3. Menambahkan kondisi jika newBalance kurang dari 0 ![ss](https://i.ibb.co/RSPhkQv/no2.jpg)
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
+-> State adalah sebuah properti atau variabel yang didefinisikan di dalam sebuah class (private), sedangkan props adalah properti atau variabel yang berasal dari luar class atau class parent atau dapat digunakan oleh component lain
+
+3. Menurut kamu, apakah sebaiknya kita menggunakan component (e.g. List, Item) dalam
+React? sebutkan alasannya.
+-> Iya, karena component react memudahkan proses development pada aplikasi yang kompleks. React membagi UI menjadi bagian-bagian 
+yang independen dan dapat digunakan kembali. Sehingga kita dapat memikirkan tiap bagian UI secara terpisah dan hal itu sangat memudahkan dalam proses development.
+
+4. Apa perbedaan class component dan functional component?
+-> Functional component hanya bisa menggunakan props itu sebabnya function component disebut stateless component atau biasa digunakan juga sebagai UI Component (komponen yang menangani tampilan). Sedangkan Class component dapat menggunakan state dan props
+
+5. Dalam react, apakah perbedaan component dan element?
+-> Komponen di React merupakan function atau class yang menerima input dan mengembalikan elemen, 
+yang hanya merupakan deskripsi dari apa yang dapat kita lihat di layar komputer kita (tidak dapat diubah dan tidak dapat diterapkan metode apa pun di atasnya)
+
+---
 ## Tutorial 6
 ### Pertanyaan
 1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
