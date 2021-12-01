@@ -3,6 +3,23 @@
 * **Indri Klarissa Ramadhanti** - *1906302554* - *APAP C*
 
 ---
+## Tutorial 8
+### Pertanyaan
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian
+melakukan langkah - langkah tersebut?
+2. Jelaskan fungsi dari async dan await!
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle
+pada pertanyaan ini.
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate,
+componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
+Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja
+yang biasanya menggunakan lifecycle method tersebut”
+-> - componentDidMount:
+-> - shouldComponentUpdate:
+-> - componentDidUpdate:
+-> - componentWillReceiveProps:
+-> - componentWillUnmount:
+---
 ## Tutorial 7
 ### Pertanyaan
 1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot
