@@ -5,6 +5,10 @@ import APIConfig from "../../api/APIConfig";
 import Button from "../../components/button";
 import Modal from "../../components/modal";
 import SearchBar from "../../components/searchbar";
+import { Fab } from "@material-ui/core";
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ViewStreamIcon from "@mui/icons-material/ViewStream";
 
 class ItemList extends Component {
     constructor(props) {
@@ -144,6 +148,15 @@ class ItemList extends Component {
                 <h1 className={classes.title}>
                     All Items
                 </h1>
+                <div style={{ position: "fixed", top: 25, right: 25}}>
+                    <Fab variant="extend" onClick={this.handleToggle}>
+                        {this.state.cartHidden ?
+                            <Badge color="secondary" badgeContent={this.state.cartItems.length}>
+                                <ShoppingCartIcon />
+                            </Badge>
+                            : <ShoppingCartIcon />}
+                    </Fab>
+                </div>
                 <Button action={this.handleAddItem}>
                     Add Item
                 </Button>
@@ -159,7 +172,7 @@ class ItemList extends Component {
                             description={item.description}
                             category={item.category}
                             handleEdit={() => this.handleEditItem(item)}
-                            // quantity={item.quantity}
+                            quantity={item.quantity}
                         />
                     ))}
                 </div>
