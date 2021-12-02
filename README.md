@@ -13,10 +13,10 @@ melakukan langkah - langkah tersebut?
 -> Fungsi dari async adalah untuk menjalankan suatu fungsi bersamaan dengan javascript (dapat dilakukan secara bersamaan dengan tahapan lain). Sedangkan untuk await biasanya terdapat di dalam fungsi async, await berarti codingan akan berhenti dari fungsi async terlebih dahulu sampai task selesai dilakukan.
 3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle
 pada pertanyaan ini.
-![ss](https://ibb.co/74cVY38)
-![ss](https://ibb.co/3Fkzdhg)
-![ss](https://ibb.co/7K1RxxM)
-![ss](https://ibb.co/x5FMRYN)
+![https://ibb.co/74cVY38](https://ibb.co/74cVY38)
+![https://ibb.co/3Fkzdhg](https://ibb.co/3Fkzdhg)
+![https://ibb.co/7K1RxxM](https://ibb.co/7K1RxxM)
+![https://ibb.co/x5FMRYN](https://ibb.co/x5FMRYN)
 4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate,
 componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
 Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja
