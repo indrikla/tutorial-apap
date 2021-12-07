@@ -3,6 +3,30 @@
 * **Indri Klarissa Ramadhanti** - *1906302554* - *APAP C*
 
 ---
+## Tutorial 8
+### Pertanyaan
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian
+melakukan langkah - langkah tersebut?
+-> Untuk menghilangkan value daari inputan sebelumnya, saya mengimplementasikan codingan dibawah ini agar form inputannya secara default akan seperti ini tiap user berhasil menambahkan item baru.
+![ss](https://i.ibb.co/WV2KqgM/message-Image-1638461315043.jpg)
+2. Jelaskan fungsi dari async dan await!
+-> Fungsi dari async adalah untuk menjalankan suatu fungsi bersamaan dengan javascript (dapat dilakukan secara bersamaan dengan tahapan lain). Sedangkan untuk await biasanya terdapat di dalam fungsi async, await berarti codingan akan berhenti dari fungsi async terlebih dahulu sampai task selesai dilakukan.
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 9 pada Component Lifecycle
+pada pertanyaan ini.
+![https://ibb.co/74cVY38](https://ibb.co/74cVY38)
+![https://ibb.co/3Fkzdhg](https://ibb.co/3Fkzdhg)
+![https://ibb.co/7K1RxxM](https://ibb.co/7K1RxxM)
+![https://ibb.co/x5FMRYN](https://ibb.co/x5FMRYN)
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate,
+componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
+Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja
+yang biasanya menggunakan lifecycle method tersebut”
+-> - componentDidMount: dijalankan setelah fungsi render() selesai dilakukan dan komponen telah dipasang (mounted) ke DOM ketika kita dapat melihat komponen UI yang telah dirender. Use case yang biasanya menggunakan ini adalah ketika membuat fetch() ke server atau setState() dari suatu state yang nantinya akan melakukan render dari data yang terbaru. Ketika melakukan update state pada fungsi ini akan memanggil fungsi render() kembali.
+-> - shouldComponentUpdate: digunakan untuk menentukan untuk memperbolehkan diupdate atau tidak suatu state berdasarkan state yang akan diubah. Dengan menerapkan ini, nantinya dapat return boolean. Namun saat ini bisa menerapkan React.PureComponent. Biasanya digunakan untuk performance optimisation measures. Use case yang menggunakan ini adalah untuk mengecek state saat ini dengan yang akan diubahnya.
+-> - componentDidUpdate: digunakan dipanggil ketika state baru saja diubah. Fungsi ini dapat digunakan untuk mengoperasikan DOM ketika komponen sudah di-update. Use case yang dapat menggunakan ini adalah ketika melakukan network request.
+-> - componentWillReceiveProps:dijalankan sebelum mounted component menerima props yang baru. Biasanya fungsi ini digunakan apabila ingin melakukan setState terhadap perubahan props. Fungsi ini dipanggil ketika terjadi update pada props saja. Biasanya use case yang menggunakan ini adalah setState()
+-> - componentWillUnmount: dipanggil ketika component di-unmount. Use case yang menggunakan ini adalah untuk cleanup seperti invalidating timers, canceling network request atau cleaning up terhadap subscription yang dibuat di componentDidMount
+---
 ## Tutorial 7
 ### Pertanyaan
 1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot
